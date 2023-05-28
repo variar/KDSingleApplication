@@ -42,7 +42,7 @@ Q_SIGNALS:
 
 private:
     Q_DECLARE_PRIVATE(KDSingleApplication)
-    std::unique_ptr<KDSingleApplicationPrivate> d_ptr;
+    KDSingleApplicationPrivate* d_ptr;
 };
 
 #endif // KDSINGLEAPPLICATION_H

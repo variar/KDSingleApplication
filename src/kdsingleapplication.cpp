@@ -105,4 +105,6 @@ bool KDSingleApplication::sendMessageWithTimeout(const QByteArray &message, int 
 }
 
 
-KDSingleApplication::~KDSingleApplication() = default;
+KDSingleApplication::~KDSingleApplication() {
+    delete d_ptr;
+}
