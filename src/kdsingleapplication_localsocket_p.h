@@ -82,6 +82,7 @@ public:
     ~KDSingleApplicationLocalSocket();
 
     bool isPrimaryInstance() const;
+    qint64 primaryPid() const;
 
 public Q_SLOTS:
     bool sendMessage(const QByteArray &message, int timeout);

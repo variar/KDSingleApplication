@@ -31,6 +31,7 @@ public:
 
     QString name() const;
     bool isPrimaryInstance() const;
+    qint64 primaryPid() const;
 
 public Q_SLOTS:
     // avoid default arguments and overloads, as they don't mix with connections

@@ -35,6 +35,11 @@ public:
         return m_impl.isPrimaryInstance();
     }
 
+    qint64 KDSingleApplication::primaryPid() const
+    {
+        return m_impl.primaryPid();
+    }
+
     bool sendMessage(const QByteArray &message, int timeout)
     {
         return m_impl.sendMessage(message, timeout);
@@ -89,6 +94,12 @@ bool KDSingleApplication::isPrimaryInstance() const
 {
     Q_D(const KDSingleApplication);
     return d->isPrimaryInstance();
+}
+
+qint64 KDSingleApplication::primaryPid() const
+{
+    Q_D(const KDSingleApplication);
+    return d->primaryPid();
 }
 
 bool KDSingleApplication::sendMessage(const QByteArray &message)

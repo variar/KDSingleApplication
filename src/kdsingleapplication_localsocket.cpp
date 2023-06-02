@@ -114,6 +114,15 @@ bool KDSingleApplicationLocalSocket::isPrimaryInstance() const
     return m_localServer != nullptr;
 }
 
+qint64 KDSingleApplicationLocalSocket::primaryPid() const {
+    qint64 pid = -1;
+    QString hostname, appname;
+    if (!m_lockFile->getLockInfo(&pid, &hostname, &appname)) {
+        return -1;
+    }
+    return pid;
+}
+
 bool KDSingleApplicationLocalSocket::sendMessage(const QByteArray &message, int timeout)
 {
     Q_ASSERT(!isPrimaryInstance());
