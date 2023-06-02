@@ -35,7 +35,7 @@ public:
         return m_impl.isPrimaryInstance();
     }
 
-    qint64 KDSingleApplication::primaryPid() const
+    qint64 primaryPid() const
     {
         return m_impl.primaryPid();
     }
