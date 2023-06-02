@@ -80,8 +80,16 @@ KDSingleApplicationLocalSocket::KDSingleApplicationLocalSocket(const QString &na
 
     if (!lockFile->tryLock()) {
         // someone else has the lock => we're secondary
-        qCDebug(kdsaLocalSocket) << "Secondary instance";
+        qint64 pid = -1;
+        QString hostname, appname;
+        if (lockFile->getLockInfo(&pid, &hostname, &appname)) {
+            m_primaryPid = pid;
+        }
+        qCDebug(kdsaLocalSocket) << "Secondary instance, primary pid " << m_primaryPid;
         return;
+    }
+    else {
+        m_primaryPid = QCoreApplication::applicationPid();
     }
 
     qCDebug(kdsaLocalSocket) << "Primary instance";
@@ -115,12 +123,7 @@ bool KDSingleApplicationLocalSocket::isPrimaryInstance() const
 }
 
 qint64 KDSingleApplicationLocalSocket::primaryPid() const {
-    qint64 pid = -1;
-    QString hostname, appname;
-    if (!m_lockFile->getLockInfo(&pid, &hostname, &appname)) {
-        return -1;
-    }
-    return pid;
+    return m_primaryPid;
 }
 
 bool KDSingleApplicationLocalSocket::sendMessage(const QByteArray &message, int timeout)

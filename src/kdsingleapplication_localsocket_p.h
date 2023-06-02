@@ -99,6 +99,7 @@ private:
     void abortConnectionToSecondary();
 
     QString m_socketName;
+    qint64 m_primaryPid {-1};
 
     std::unique_ptr<QLockFile> m_lockFile; // protects m_localServer
     std::unique_ptr<QLocalServer> m_localServer;
