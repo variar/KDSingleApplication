@@ -10,6 +10,7 @@
 
 #include "kdsingleapplication_localsocket_p.h"
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QDeadlineTimer>
 #include <QtCore/QTimer>
